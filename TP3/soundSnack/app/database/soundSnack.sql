@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2025 a las 08:54:51
+-- Tiempo de generación: 08-11-2025 a las 04:04:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,12 +44,12 @@ CREATE TABLE `artists` (
 --
 
 INSERT INTO `artists` (`id_artist`, `name`, `biography`, `cover`, `date_of_birth`, `date_of_death`, `place_of_birth`) VALUES
-(1, 'Axel Patricio Fernando Witteveen', 'Axel Patricio Fernando Witteveen, es un cantante y compositor argentino. Ha sido galardonado con cinco Premios Carlos Gardel, un MTV Europe Music Awards, un MTV Latinoamérica, dos 40 principales, un MTV Millennial Awards, un Kids Choice Awards Argentina, un TVyNovelas, un Heat Latin Music Awards, entre otros.', '/soundSnack/assets/img/covers/artists/axelWitteveen.jpg', '1977-01-01', NULL, 'Rafael Calzada, Almirante Brown, Buenos Aires, Argentina'),
-(2, 'Airbag', 'Airbag es una banda argentina de Rock fundada en Don Torcuato, Gran Buenos Aires, en el año 1999. La banda fue fundada e integrada por los hermanos Gastón Sardelli, Patricio Sardelli y Guido Sardelli donde empezaron con los primeros ensayos a mediados de los años noventa bajo el nombre de Los Nietos de Chuck, donde hacían covers de Chuck Berry, The Beatles y Creedence, entre otros.', '/soundSnack/assets/img/covers/artists/airbag.jpg', '1999-01-01', NULL, 'Don Torcuato, Buenos Aires, Argentina'),
-(3, 'Tan Biónica', 'Tan Biónica es un grupo musical de rock argentino surgido en Buenos Aires en el año 2001 formado por Chano, Seby, Bambi y Diega. Desde 2016 el grupo estuvo en un impasse hasta el 17 de marzo de 2023, cuando Chano se presentó en el Lollapalooza Argentina y anunció oficialmente el regreso de la banda.', '/soundSnack/assets/img/covers/artists/tanBionica.jpg', '2001-01-01', NULL, 'Buenos Aires, Argentina'),
-(4, 'Miranda!', 'Miranda! es un dúo argentino de pop formado en 2001 integrado por Ale Sergi y Juliana Gattas.', '/soundSnack/assets/img/covers/artists/miranda.jpg', '2001-01-01', NULL, 'Buenos Aires, Argentina'),
-(5, 'Bad Bunny', 'Bad Bunny nació en San Juan, Puerto Rico, el 10 de marzo de 1994. Es compositor y cantante de música urbana, sobre todo trap y reggaetón.', '/soundSnack/assets/img/covers/artists/badbunny.jpg', '1994-03-10', NULL, 'San Juan, Puerto Rico'),
-(6, 'Lady Gaga', 'Stefani Joanne Angelina Germanotta, conocida por su nombre artístico Lady Gaga, es una cantante, compositora, productora, bailarina, actriz, activista y diseñadora de moda estadounidense.', '/soundSnack/assets/img/covers/artists/ladygaga.jpg', '1986-03-28', NULL, 'Nueva York, Estados Unidos');
+(1, 'Axel Patricio Fernando Witteveen', 'Axel Patricio Fernando Witteveen, es un cantante y compositor argentino. Ha sido galardonado con cinco Premios Carlos Gardel, un MTV Europe Music Awards, un MTV Latinoamérica, dos 40 principales, un MTV Millennial Awards, un Kids Choice Awards Argentina, un TVyNovelas, un Heat Latin Music Awards, entre otros.', 'assets/img/covers/artists/axelWitteveen.jpg', '1977-01-01', NULL, 'Rafael Calzada, Almirante Brown, Buenos Aires, Argentina'),
+(2, 'Airbag', 'Airbag es una banda argentina de Rock fundada en Don Torcuato, Gran Buenos Aires, en el año 1999. La banda fue fundada e integrada por los hermanos Gastón Sardelli, Patricio Sardelli y Guido Sardelli donde empezaron con los primeros ensayos a mediados de los años noventa bajo el nombre de Los Nietos de Chuck, donde hacían covers de Chuck Berry, The Beatles y Creedence, entre otros.', 'assets/img/covers/artists/airbag.jpg', '1999-01-01', NULL, 'Don Torcuato, Buenos Aires, Argentina'),
+(3, 'Tan Biónica', 'Tan Biónica es un grupo musical de rock argentino surgido en Buenos Aires en el año 2001 formado por Chano, Seby, Bambi y Diega. Desde 2016 el grupo estuvo en un impasse hasta el 17 de marzo de 2023, cuando Chano se presentó en el Lollapalooza Argentina y anunció oficialmente el regreso de la banda.', 'assets/img/covers/artists/tanBionica.jpg', '2001-01-01', NULL, 'Buenos Aires, Argentina'),
+(4, 'Miranda!', 'Miranda! es un dúo argentino de pop formado en 2001 integrado por Ale Sergi y Juliana Gattas.', 'assets/img/covers/artists/miranda.jpg', '2001-01-01', NULL, 'Buenos Aires, Argentina'),
+(5, 'Bad Bunny', 'Bad Bunny nació en San Juan, Puerto Rico, el 10 de marzo de 1994. Es compositor y cantante de música urbana, sobre todo trap y reggaetón.', 'assets/img/covers/artists/badbunny.jpg', '1994-03-10', NULL, 'San Juan, Puerto Rico'),
+(6, 'Lady Gaga', 'Stefani Joanne Angelina Germanotta, conocida por su nombre artístico Lady Gaga, es una cantante, compositora, productora, bailarina, actriz, activista y diseñadora de moda estadounidense.', 'assets/img/covers/artists/ladygaga.jpg', '1986-03-28', NULL, 'Nueva York, Estados Unidos');
 
 -- --------------------------------------------------------
 
@@ -102,17 +102,16 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `profile_photo` varchar(255) DEFAULT NULL
+  `profile_photo` varchar(255) DEFAULT NULL,
+  `role` varchar(50) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id_user`, `name`, `email`, `password`, `profile_photo`) VALUES
-(1, 'webadmin', 'webadmin@gmail.com', '$2y$10$3NbNAqg6Sd.oXEHcTv8cB..Czx2YC2GNQ0429UYK9VmW4SmLxXNQm', '/soundSnack/assets/img/covers/users/webadmin.png'),
-(2, 'Malena', 'malenaManzzalini@gmail.com', '$2y$10$rBFJYuyEee1THNxgH/uTfeXngmXQbty7o9rLzTV9stlcvxQDhlDnS', '/soundSnack/assets/img/covers/users/defaultUser.jpg'),
-(3, 'Martin', 'Martin@gmail.com', '$2y$10$grah4RlK1n4WeqrwfF8IBednjA9exDUmHxjem6mZd5y5RlXjnXYsm', '/soundSnack/assets/img/covers/users/defaultUser.jpg');
+INSERT INTO `users` (`id_user`, `name`, `email`, `password`, `profile_photo`, `role`) VALUES
+(1, 'webadmin', 'webadmin@gmail.com', '$2y$10$3NbNAqg6Sd.oXEHcTv8cB..Czx2YC2GNQ0429UYK9VmW4SmLxXNQm', 'assets/img/covers/users/webadmin.png', 'webadmin');
 
 --
 -- Índices para tablas volcadas
@@ -145,19 +144,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `id_artist` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_artist` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id_song` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_song` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas

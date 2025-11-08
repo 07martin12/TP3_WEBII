@@ -46,4 +46,30 @@ class CancionModel
         $song = $query->fetch(PDO::FETCH_OBJ);
         return $song ?: null;
     }
+
+    public function insert(int $id_artist, string $title, ?string $album = null, ?string $duration = null, ?string $genre = null, ?string $video = null): int
+    {
+        $query = $this->db->prepare("
+            INSERT INTO songs (id_artist, title, album, duration, genre, video)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ");
+        $query->execute([$id_artist, $title, $album, $duration, $genre, $video]);
+        return intval($this->db->lastInsertId());
+    }
+
+    public function update(int $id_artist, int $id_song, string $title, ?string $album = null, ?string $duration = null, ?string $genre = null, ?string $video = null): bool
+    {
+        $query = $this->db->prepare("
+            UPDATE songs
+            SET title = ?, album = ?, duration = ?, genre = ?, video = ?
+            WHERE id_artist = ? AND id_song = ?
+        ");
+        return $query->execute([$title, $album, $duration, $genre, $video, $id_artist, $id_song]);
+    }
+
+    public function delete(int $id_artist, int $id_song): bool
+    {
+        $query = $this->db->prepare("DELETE FROM songs WHERE id_artist = ? AND id_song = ?");
+        return $query->execute([$id_artist, $id_song]);
+    }
 }
