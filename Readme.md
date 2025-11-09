@@ -191,7 +191,7 @@ Eliminar canción por ID.
 
 ---
 
-## Ejemplos rápidos (Postman)
+## Consultas con Postman
 
 ### Obtener token para autenticación
 
@@ -207,7 +207,7 @@ POST http://localhost/TP3_WEBII/TP3/soundSnack/api/auth/login
 
 Copiar el token de la respuesta.
 
-### Pasos para agregar un artista con postman
+### Pasos para agregar un artista nuevo
 
 ```
 POST http://localhost/TP3_WEBII/TP3/soundSnack/api/artistas
@@ -227,7 +227,7 @@ POST http://localhost/TP3_WEBII/TP3/soundSnack/api/artistas
 }
 ```
 
-### Pasos para agregar una canción de un artista con postman
+### Pasos para agregar una canción nueva de un artista especifico
 
 ```
 POST http://localhost/TP3_WEBII/TP3/soundSnack/api/canciones/3
