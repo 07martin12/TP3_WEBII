@@ -41,7 +41,7 @@ Si por algún motivo el autodeploy falla, se puede crear la base manualmente imp
 
 ---
 
-## 🔐 Autenticación (JWT)
+## Autenticación (JWT)
 
 ### Obtener token
 
