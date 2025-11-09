@@ -27,15 +27,14 @@ class CancionController
 
     public function getById($req, $res)
     {
-        $id_artista = $req->params->id_artista;
         $id_cancion = $req->params->id_cancion;
 
-        $cancion = $this->model->getById($id_artista, $id_cancion);
+        $cancion = $this->model->getById($id_cancion);
 
         if ($cancion)
             return $res->json($cancion, 200);
         else
-            return $res->json(["error" => "La canción $id_cancion no existe para el artista $id_artista"], 404);
+            return $res->json(["error" => "La canción con id $id_cancion no existe"], 404);
     }
 
     public function insert($req, $res)
@@ -43,44 +42,50 @@ class CancionController
         $id_artista = $req->params->id_artista;
         $body = $req->body;
 
-        if (empty($body->titulo) || empty($body->duracion))
+        if (empty($body->title) || empty($body->duration))
             return $res->json(['error' => 'Faltan datos requeridos: título o duración'], 400);
 
-        $id = $this->model->insert($id_artista, $body->titulo, $body->duracion);
+        $id = $this->model->insert(
+            $id_artista,
+            $body->title,
+            $body->album ?? null,
+            $body->duration,
+            $body->genre ?? null,
+            $body->video ?? null
+        );
 
         return $res->json(['message' => 'Canción creada', 'id' => $id], 201);
     }
 
     public function update($req, $res)
     {
-        $id_artista = $req->params->id_artista;
         $id_cancion = $req->params->id_cancion;
         $body = $req->body;
 
-        $cancion = $this->model->getById($id_artista, $id_cancion);
+        $cancion = $this->model->getById($id_cancion);
         if (!$cancion)
             return $res->json(["error" => "La canción no existe"], 404);
 
-        $this->model->update(
-            $id_artista,
-            $id_cancion,
-            $body->titulo ?? $cancion->titulo,
-            $body->duracion ?? $cancion->duracion
-        );
+        $title = $body->title ?? $cancion->title;
+        $album = $body->album ?? $cancion->album;
+        $duration = $body->duration ?? $cancion->duration;
+        $genre = $body->genre ?? $cancion->genre;
+        $video = $body->video ?? $cancion->video;
+
+        $this->model->update($id_cancion, $title, $album, $duration, $genre, $video);
 
         return $res->json(["message" => "Canción actualizada correctamente"], 200);
     }
 
     public function delete($req, $res)
     {
-        $id_artista = $req->params->id_artista;
         $id_cancion = $req->params->id_cancion;
 
-        $cancion = $this->model->getById($id_artista, $id_cancion);
+        $cancion = $this->model->getById($id_cancion);
         if (!$cancion)
             return $res->json(["error" => "La canción no existe"], 404);
 
-        $this->model->delete($id_artista, $id_cancion);
+        $this->model->delete($id_cancion);
         return $res->json(["message" => "Canción eliminada correctamente"], 200);
     }
 }

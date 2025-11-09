@@ -58,7 +58,7 @@ final class DBConnection
     // Autodeploy: crea la base de datos y tablas si es necesario.
     private function deploy(): void
     {
-        $sqlFile = __DIR__ . '/../webII2025/soundSnack.sql';
+        $sqlFile = __DIR__ . '/../soundSnack.sql';
         if (!file_exists($sqlFile)) {
             error_log("Archivo SQL no encontrado: $sqlFile");
             return;
