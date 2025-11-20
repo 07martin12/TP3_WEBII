@@ -47,27 +47,23 @@ Si por algún motivo el autodeploy falla, se puede crear la base manualmente imp
 
 **POST** `http://localhost/TP3_WEBII/TP3/soundSnack/api/auth/login`
 
-**Body (JSON):**
-
-```json
-{
-  "email": "webadmin@gmail.com",
+**Auth Type (Basic Auth):**
+ ```
+  "username": "webadmin@gmail.com",
   "password": "admin"
-}
-```
-
+ ```
 **Respuesta:**
 
 ```json
 {
-  "token": "eyJ..."
+  "token": "ej12342weds..."
 }
 ```
 
-Usar el token en los endpoints protegidos mediante el header:
+Usar el token en los endpoints protegidos mediante:
 
 ```
-Authorization: Bearer TOKEN...
+Auth Type: Bearer TOKEN
 ```
 
 ---
@@ -96,11 +92,12 @@ Combina límite y orden.
 
 Obtener artista por ID.
 
+Crear artista.  
+
 #### POST http://localhost/TP3_WEBII/TP3/soundSnack/api/artistas
 
-Crear artista.  
-**Header:** `Authorization: Bearer <token>`  
-**Body (JSON):**
+**Auth Type:** `Authorization: Bearer <token>`  
+**Body (raw opcion JSON):**
 
 ```json
 {
@@ -113,10 +110,11 @@ Crear artista.
 }
 ```
 
+Actualizar artista.  
+
 #### PUT http://localhost/TP3_WEBII/TP3/soundSnack/api/artista/:id
 
-Actualizar artista.  
-**Header:** `Authorization: Bearer <token>`  
+**Auth Type:** `Authorization: Bearer <token>`  
 **Body (JSON)** — se envian solo los campos a modificar:
 
 ```json
@@ -126,10 +124,11 @@ Actualizar artista.
 }
 ```
 
+Eliminar artista.  
+
 #### DELETE http://localhost/TP3_WEBII/TP3/soundSnack/api/artista/:id
 
-Eliminar artista.  
-**Header:** `Authorization: Bearer <token>`
+**Auth Type:** `Authorization: Bearer <token>`
 
 ---
 
@@ -155,10 +154,11 @@ Combinar límite y orden.
 
 Obtener una canción por su ID global.
 
+Crear canción para un artista (se indica el id del artista).  
+
 #### POST http://localhost/TP3_WEBII/TP3/soundSnack/api/canciones/:id_artista
 
-Crear canción para un artista (se indica el id del artista).  
-**Header:** `Authorization: Bearer <token>`  
+**Auth Type:** `Authorization: Bearer <token>`  
 **Body (JSON):**
 
 ```json
@@ -170,11 +170,11 @@ Crear canción para un artista (se indica el id del artista).
   "video": "https://youtube.com/..."
 }
 ```
+Actualizar canción por ID.
 
 #### PUT http://localhost/TP3_WEBII/TP3/soundSnack/api/cancion/:id_cancion
 
-Actualizar canción por ID.  
-**Header:** `Authorization: Bearer <token>`  
+**Auth Type:** `Authorization: Bearer <token>`  
 **Body (JSON)** — Se envian solo los campos a modificar:
 
 ```json
@@ -183,11 +183,11 @@ Actualizar canción por ID.
   "duration": "04:10"
 }
 ```
+Eliminar canción por ID. 
 
 #### DELETE http://localhost/TP3_WEBII/TP3/soundSnack/api/cancion/:id_cancion
 
-Eliminar canción por ID.  
-**Header:** `Authorization: Bearer <token>`
+**Auth Type:** `Authorization: Bearer <token>`
 
 ---
 
@@ -199,52 +199,10 @@ Eliminar canción por ID.
 POST http://localhost/TP3_WEBII/TP3/soundSnack/api/auth/login
 ```
 
-**Body JSON:**
-
-```json
-{ "email": "webadmin@gmail.com", "password": "admin" }
-```
-
-Copiar el token de la respuesta.
-
-### Pasos para agregar un artista nuevo
+**Auth (basic Auth):**
 
 ```
-POST http://localhost/TP3_WEBII/TP3/soundSnack/api/artistas
+"username": "webadmin@gmail.com"
+"password": "admin"
 ```
-
-**Headers:**  
-`Authorization: Bearer <token>`  
-`Content-Type: application/json`
-
-**Body JSON:**
-
-```json
-{
-  "name": "Nuevo artista",
-  "biography": "Descripción del artista",
-  "cover": "cover.png"
-}
-```
-
-### Pasos para agregar una canción nueva de un artista especifico
-
-```
-POST http://localhost/TP3_WEBII/TP3/soundSnack/api/canciones/3
-```
-
-**Headers:**  
-`Authorization: Bearer <token>`  
-`Content-Type: application/json`
-
-**Body JSON:**
-
-```json
-{
-  "title": "Nueva canción",
-  "album": "Nuevo álbum",
-  "duration": "03:40",
-  "genre": "Rock",
-  "video": "https://youtube.com/..."
-}
-```
+Copiar el token de la respuesta para futuras operaciones post, put, o delete.
