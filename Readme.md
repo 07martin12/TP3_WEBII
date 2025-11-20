@@ -190,19 +190,3 @@ Eliminar canción por ID.
 **Auth Type:** `Authorization: Bearer <token>`
 
 ---
-
-## Consultas con Postman
-
-### Obtener token para autenticación
-
-```
-POST http://localhost/TP3_WEBII/TP3/soundSnack/api/auth/login
-```
-
-**Auth (basic Auth):**
-
-```
-"username": "webadmin@gmail.com"
-"password": "admin"
-```
-Copiar el token de la respuesta para futuras operaciones post, put, o delete.
